@@ -10,14 +10,12 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Estudiantes por Grado</p>
+                                @foreach ($estudiantesPorGrado['estudiantes'] as $estudiante)
                                     <h5 class="font-weight-bolder">
-                                        $53,000
+                                        {{ $estudiante->nombre }} - Grado {{ $estudiante->grado }}
                                     </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                        since yesterday
-                                    </p>
+                                @endforeach
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -35,14 +33,14 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
-                                    <h5 class="font-weight-bolder">
-                                        2,300
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
-                                    </p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Estudiantes Ordenados</p>
+                                    <ul>
+                                        @foreach ($estudiantesOrdenados['estudiantes'] as $estudiante)
+                                            <li>
+                                                ID: {{ $estudiante->id }} | Nombre: {{ $estudiante->nombre }} | CI: {{ $estudiante->ci }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -60,15 +58,21 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
-                                    <h5 class="font-weight-bolder">
-                                        +3,462
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                        since last quarter
-                                    </p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Asociar Estudiante a Curso</p>
+                                    <form action="{{ route('asociar-estudiante-curso') }}" method="post">
+                                        @csrf
+                                        <label for="nombre_estudiante">Nombre del Estudiante:</label>
+                                        <input type="text" name="nombre_estudiante" required><br>
+                                        <label for="ci_estudiante">CI del Estudiante:</label>
+                                        <input type="number" name="ci_estudiante" required><br>
+                                        <label for="descripcion_curso">Descripción del Curso:</label>
+                                        <input type="text" name="descripcion_curso" required><br>
+                                        <label for="grado_curso">Grado del Curso:</label>
+                                        <input type="number" name="grado_curso" required><br>
+                                        <button type="submit">Asociar Estudiante a Curso</button>
+                                    </form>
                                 </div>
+
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
@@ -85,13 +89,14 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
-                                    <h5 class="font-weight-bolder">
-                                        $103,430
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-                                    </p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Estudiantes con Cursos</p>
+                                    <ul>
+                                        @foreach ($estudiantesConCursos['estudiantes'] as $estudiante)
+                                            <li>
+                                                ID: {{ $estudiante->id }} | Nombre: {{ $estudiante->nombre }} | Grado: {{ $estudiante->grado }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-4 text-end">

@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Database\Sedeers\CursosSeeder;
+use Database\Sedeers\EstudiantesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,14 +14,29 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    // public function run()
+    // {
+    //     DB::table('users')->insert([
+    //         'username' => 'admin',
+    //         'firstname' => 'Admin',
+    //         'lastname' => 'Admin',
+    //         'email' => 'admin@argon.com',
+    //         'password' => bcrypt('secret')
+    //     ]);
+    // }
+    public function run(): void
     {
-        DB::table('users')->insert([
-            'username' => 'admin',
-            'firstname' => 'Admin',
-            'lastname' => 'Admin',
-            'email' => 'admin@argon.com',
-            'password' => bcrypt('secret')
+        $this->call([
+            EstudiantesSeeder::class
         ]);
+        $this->call([
+            CursosSeeder::class
+        ]);
+        // \App\Models\User::factory(10)->create();
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }
