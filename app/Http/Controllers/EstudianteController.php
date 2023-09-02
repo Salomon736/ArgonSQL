@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
 {
+    public function index(){
+        $estudiante = new Estudiante();
+        return response()->json(['estudiantes'=>$estudiante]);
+    }
     public function create(Request $request)
     {
         $datos = $request -> all();

@@ -14,6 +14,8 @@ use App\Http\Controllers\CursosController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/estudianteVista', [EstudianteController::class, 'index']);
+
 Route::post('/estudiante', [EstudianteController::class, 'create']);
 
 Route::post('/cursos', [CursosController::class, 'create']);
